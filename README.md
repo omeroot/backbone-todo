@@ -1,2 +1,2 @@
 # backbone-todo
-node app.js
+$node app.js
