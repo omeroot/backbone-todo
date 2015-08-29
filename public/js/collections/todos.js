@@ -6,8 +6,8 @@ app.TodoList = Backbone.Collection.extend({
   localStorage : new Backbone.LocalStorage('todos-backbones'),
   completed : function(){
     return this.filter(function( todo ){
-      return this.get('completed');
-    })
+      return todo.get('completed');
+    });
   },
   remaining : function(){
     return this.without.apply(this, this.completed());
@@ -24,4 +24,4 @@ app.TodoList = Backbone.Collection.extend({
   }
 });
 
-app.Todos = new app.TodoList(new app.Todo({title : 'test1', completed : false}));
+app.Todos = new app.TodoList();
