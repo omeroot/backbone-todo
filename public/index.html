@@ -3,16 +3,19 @@
 		<link rel="stylesheet" href="/css/stylesheets.css">
 		</head>
 	<body>
+		<section id="todoapp">
+			<header id="header">
+				<h1>todos</h1>
+				<input id="new-todo" placeholder="??" autofocus>
+			</header>
 
-		<header id="header">
-			<h1>todos</h1>
-			<input id="new-todo" placeholder="??" autofocus>
-		</header>
-		<section id="main">
-			<input id="toggle-all" type="checkbox">
-			<label for="toggle-all">Mark all</label>
-			<ul id="todo-list"></ul>
+			<section id="main">
+				<input id="toggle-all" type="checkbox">
+				<label for="toggle-all">Mark all</label>
+				<ul id="todo-list"></ul>
+			</section>
 		</section>
+		
 		<script type="text/template" id="item-template">
 			<div class="view">
 				<input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
@@ -40,8 +43,6 @@
 			<button id="clear-completed"> Clear completed (<%= completed %>) </button>
 			<% } %>
 		</script>
-		<script type="text/template" id="item-template"></script>
-		<script type="text/template" id="stats-template"></script>
 		<script src="js/lib/jquery-2.1.4.min.js"></script>
 		<script src="js/lib/underscore-min.js"></script>
 		<script src="js/lib/backbone-min.js"></script>

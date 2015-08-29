@@ -11,5 +11,17 @@ app.TodoList = Backbone.Collection.extend({
   },
   remaining : function(){
     return this.without.apply(this, this.completed());
+  },
+  nextOrder : function(){
+    if(!this.length){
+      return 1;
+    }else{
+      return this.last().get('order') + 1;
+    }
+  },
+  comparator : function(){
+    return this.get('order');
   }
 });
+
+app.Todos = new app.TodoList(new app.Todo({title : 'test1', completed : false}));
