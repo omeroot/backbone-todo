@@ -12,6 +12,8 @@ app.TodoView = Backbone.View.extend({
   },
   initialize : function(){
     this.listenTo(this.model, 'change', this.render);
+    this.listenTo(this.model, 'destroy', this.clear);
+    this.listenTo(this.model, 'visible', this.toggleVisible);
   },
   render : function(){
     this.$el.html(this.itemTemplate(this.model.toJSON()));
@@ -22,6 +24,7 @@ app.TodoView = Backbone.View.extend({
     this.model.toggle();
   },
   toggleVisible : function(){
+    console.log(this.model)
     this.$el.toggleClass('hidden',this.isHidden());
   },
   isHidden : function(){
