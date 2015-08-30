@@ -1,9 +1,11 @@
 var app = app || {}
 
 app.TodoView = Backbone.View.extend({
-  el : 'li',
+  tagName : 'li',
   itemTemplate : _.template($('#item-template').html()),
   events : {
+    'click .toggle' : 'toggleCompleted',
+    'click .destroy' : 'clear',
     'dblclick label' : 'edit',
     'keypress .edit' : 'updateOnEnter',
     'blur .edit' : 'close'
@@ -15,6 +17,22 @@ app.TodoView = Backbone.View.extend({
     this.$el.html(this.itemTemplate(this.model.toJSON()));
     this.$input = this.$('.edit');
     return this;
+  },
+  toggleCompleted : function(){
+    this.model.toggle();
+  },
+  toggleVisible : function(){
+    this.$el.toggleClass('hidden',this.isHidden());
+  },
+  isHidden : function(){
+    var isCompleted = this.model.get('completed');
+    return(
+      (!isCompleted && app.TodoFilter === 'completed')
+      || (isCompleted && app.TodoFilter === 'active')
+    );
+  },
+  clear : function(){
+    this.model.destroy();
   },
   edit : function(){
     this.$el.addClass('editing');

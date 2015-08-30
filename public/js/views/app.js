@@ -52,7 +52,7 @@ app.AppView = Backbone.View.extend({
 	addOne: function(todo) {
 		var v = new app.TodoView({
 			model: todo
-		});
+		});	
 		$('#todo-list').append(v.render().el);
 	},
 	addAll: function() {
